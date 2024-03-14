@@ -52,32 +52,31 @@ $mail = new PHPMailer(true);
 
 try {
     //Server settings
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+    $mail->SMTPDebug = 2;
     $mail->isSMTP();
-    $mail->Host = 'smtp.example.com';
+    $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'user@example.com';
-    $mail->Password = 'secret';
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-    $mail->Port = 465;
+    $mail->Username = 'webcompleto2@gmail.com';
+    $mail->Password = '!@#$4321';
+    $mail->SMTPSecure = 'tls';
+    $mail->Port = 587;
 
     //Recipients
-    $mail->setFrom('from@example.com', 'Mailer');
-    $mail->addAddress('joe@example.net', 'Joe User');
-    $mail->addAddress('ellen@example.com');
-    $mail->addReplyTo('info@example.com', 'Information');
-    $mail->addCC('cc@example.com');
-    $mail->addBCC('bcc@example.com');
+    $mail->setFrom('webcompleto2@gmail.com', 'Web Completo Remetente');
+    $mail->addAddress('pedropmarcelino2004@gmail.com', 'Web Completo Destinatário');
+    //$mail->addReplyTo('info@example.com', 'Information');
+    //$mail->addCC('cc@example.com');
+    //$mail->addBCC('bcc@example.com');
 
     //Attachments
-    $mail->addAttachment('/var/tmp/file.tar.gz');
-    $mail->addAttachment('/tmp/image.jpg', 'new.jpg');
+    //$mail->addAttachment('/var/tmp/file.tar.gz');
+    //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');
 
     //Content
     $mail->isHTML(true);
-    $mail->Subject = 'Here is the subject';
-    $mail->Body = 'This is the HTML message body <b>in bold!</b>';
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+    $mail->Subject = 'Esse é o assunto do e-mail';
+    $mail->Body = 'Esse é o <strong>conteúdo</strong> do e-mail.';
+    $mail->AltBody = 'Esse é o conteúdo do e-mail.';
 
     $mail->send();
     echo 'Message has been sent';
