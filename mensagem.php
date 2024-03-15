@@ -56,14 +56,14 @@ try {
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'webcompleto2@gmail.com';
-    $mail->Password = '!@#$4321';
+    $mail->Username = '---';
+    $mail->Password = '---';
     $mail->SMTPSecure = 'tls';
     $mail->Port = 587;
 
     //Recipients
     $mail->setFrom('webcompleto2@gmail.com', 'Web Completo Remetente');
-    $mail->addAddress('pedropmarcelino2004@gmail.com', 'Web Completo Destinatário');
+    $mail->addAddress($mensagem->__get('para'), 'Web Completo Destinatário');
     //$mail->addReplyTo('info@example.com', 'Information');
     //$mail->addCC('cc@example.com');
     //$mail->addBCC('bcc@example.com');
@@ -74,12 +74,13 @@ try {
 
     //Content
     $mail->isHTML(true);
-    $mail->Subject = 'Esse é o assunto do e-mail';
-    $mail->Body = 'Esse é o <strong>conteúdo</strong> do e-mail.';
-    $mail->AltBody = 'Esse é o conteúdo do e-mail.';
+    $mail->Subject = $mensagem->__get('assunto');
+    $mail->Body = $mensagem->__get('mensagem');
+    $mail->AltBody = 'Utilize um client que suporte HTML para ter acesso a mensagem.';
 
     $mail->send();
-    echo 'Message has been sent';
+    echo 'E-mail enviado com sucesso';
 } catch (Exception $e) {
     echo "Não foi possível enviar este e-mai. Error: {$mail->ErrorInfo}";
 }
+
